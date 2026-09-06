@@ -1,0 +1,1405 @@
+/* ==========================================================================
+   NAVADISH v3 — DESIGN SYSTEM & MOTION TOKENS
+   Linear × Cron × Superhuman Precision · Apple HIG Meets Warm Editorial
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+    /* Color Tokens */
+    --base: #FAF6EF;
+    --surface: #F0E6D8;
+    --surface-light: #F7F1E8;
+    --surface-dark: #E4D5C3;
+
+    --ink: #2B2420;
+    --ink-muted: #5C4638;
+    --ink-tertiary: #8C7265;
+
+    --primary-accent: #C4703F;
+    --primary-accent-hover: #A9582A;
+    --secondary-accent: #8B5A3C;
+    --success-mastery: #7A8B5C;
+    --alert-deficit: #B5484A;
+
+    /* Frosted Glassmorphism Tokens */
+    --glass-bg: rgba(250, 246, 239, 0.65);
+    --glass-border: rgba(255, 255, 255, 0.7);
+    --glass-shadow: 0 12px 36px rgba(43, 36, 32, 0.06), inset 0 1px 1px rgba(255, 255, 255, 0.9);
+
+    /* AI Accent Gradient (Used STRICTLY for Intelligent Layer Surfaces) */
+    --ai-gradient: linear-gradient(135deg, #C4703F 0%, #D4A574 50%, #8B5A9C 100%);
+    --ai-gradient-text: linear-gradient(135deg, #C4703F 0%, #B8724D 40%, #8B5A9C 100%);
+    --ai-glow: 0 0 24px rgba(196, 112, 63, 0.35), 0 0 48px rgba(139, 90, 156, 0.2);
+
+    /* Typography */
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+
+    /* Motion Tokens */
+    --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+    --duration-micro: 120ms;
+    --duration-standard: 240ms;
+    --duration-page: 480ms;
+
+    /* Weekly Heatmap Cell Palette */
+    --cell-100-bg: #E8D6C0;
+    --cell-100-border: #D4BA9E;
+    --cell-100-text: #6A3E1E;
+
+    --cell-75-bg: #EFE4D6;
+    --cell-75-border: #E0CFC0;
+    --cell-75-text: #7A5338;
+
+    --cell-50-bg: #E8DECF;
+    --cell-50-border: #D8CCA8;
+    --cell-50-text: #5C4638;
+
+    --cell-25-bg: #F4EDE4;
+    --cell-25-border: #E8DEC8;
+    --cell-25-text: #8C7265;
+
+    --cell-0-bg: rgba(255, 255, 255, 0.65);
+    --cell-0-border: rgba(220, 209, 192, 0.6);
+    --cell-0-text: #A89587;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Eliminate nested/double scrollbars visually across all inner containers */
+body * {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;    /* Firefox */
+}
+body *::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+/* Single clean page-level scrollbar */
+html, body {
+    scrollbar-width: thin;
+    scrollbar-color: #D4C4B0 var(--base);
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    width: 8px;
+}
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track {
+    background: var(--base);
+}
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
+    background: #D4C4B0;
+    border-radius: 4px;
+}
+html::-webkit-scrollbar-thumb:hover,
+body::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-accent);
+}
+
+html, body {
+    background-color: var(--base);
+    background-image: 
+        radial-gradient(at 0% 0%, rgba(240, 230, 216, 0.7) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(228, 213, 195, 0.5) 0px, transparent 50%);
+    background-attachment: fixed;
+    color: var(--ink);
+    font-family: var(--font-sans);
+    min-height: 100vh;
+    letter-spacing: -0.011em;
+}
+
+h1, h2, h3, .typeset-serif {
+    font-family: var(--font-serif);
+    letter-spacing: -0.022em;
+}
+
+/* ==========================================================================
+   FROSTED GLASSMORPHISM PANELS & CARDS
+   ========================================================================== */
+.glass-panel, .apple-glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    border-radius: 24px;
+}
+
+.apple-card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.95);
+    box-shadow: 0 8px 24px rgba(43, 36, 32, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    transition: transform var(--duration-standard) var(--ease-standard), box-shadow var(--duration-standard) var(--ease-standard);
+}
+
+.apple-card:hover {
+    transform: translateY(-2px) scale(1.008);
+    box-shadow: 0 16px 36px rgba(43, 36, 32, 0.07), inset 0 1px 0 #FFFFFF;
+}
+
+/* ==========================================================================
+   SEGMENTED NAVIGATION PILL
+   ========================================================================== */
+.macos-pill-nav {
+    background: rgba(240, 230, 216, 0.65);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding: 5px;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    box-shadow: inset 0 1px 3px rgba(43, 36, 32, 0.08);
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+}
+
+.macos-pill-btn {
+    position: relative;
+    z-index: 10;
+    padding: 8px 18px;
+    border-radius: 9999px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink-muted);
+    transition: color var(--duration-standard) ease, transform 180ms var(--ease-standard);
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    user-select: none;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+}
+
+.macos-pill-btn:hover {
+    color: var(--ink);
+}
+
+.macos-pill-btn.active {
+    color: var(--ink);
+    font-weight: 700;
+}
+
+.macos-pill-indicator {
+    position: absolute;
+    inset: 0;
+    background: #FFFFFF;
+    border-radius: 9999px;
+    box-shadow: 0 3px 12px rgba(43, 36, 32, 0.1), 0 1px 2px rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.95);
+    z-index: 0;
+}
+
+/* ==========================================================================
+   CUSTOM 3D DEBOSSED INPUTS & SELECTS
+   ========================================================================== */
+.debossed-input {
+    background: rgba(240, 230, 216, 0.55);
+    border: 1px solid rgba(220, 209, 192, 0.85);
+    box-shadow: inset 0 2px 4px rgba(43, 36, 32, 0.06);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    transition: all var(--duration-standard) var(--ease-standard);
+    outline: none;
+}
+
+.debossed-input:focus, .debossed-input:focus-within {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: var(--primary-accent);
+    box-shadow: inset 0 1px 2px rgba(43, 36, 32, 0.04), 0 0 0 3px rgba(196, 112, 63, 0.25);
+}
+
+.custom-select-menu {
+    background: rgba(250, 246, 239, 0.96);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    box-shadow: 0 14px 40px rgba(43, 36, 32, 0.12);
+    border-radius: 16px;
+    z-index: 150;
+    overflow: hidden;
+}
+
+.custom-select-item {
+    padding: 10px 14px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--ink);
+    cursor: pointer;
+    transition: background-color 160ms ease, color 160ms ease;
+    user-select: none;
+}
+
+.custom-select-item:hover {
+    background-color: var(--surface);
+    color: var(--ink);
+}
+
+.custom-select-item.selected {
+    background-color: var(--surface-dark);
+    font-weight: 700;
+    color: var(--ink);
+}
+
+/* ==========================================================================
+   WEEKLY SCHEDULE MATRIX (HEATMAP)
+   ========================================================================== */
+.weekly-matrix-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 3px;
+    table-layout: fixed;
+}
+
+.weekly-matrix-table th {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    padding-bottom: 4px;
+    text-align: center;
+    letter-spacing: 0.04em;
+}
+
+.weekly-matrix-table td {
+    padding: 0;
+}
+
+.matrix-cell-box {
+    height: 24px;
+    width: 100%;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+    transition: transform var(--duration-standard) var(--ease-standard), box-shadow var(--duration-standard) ease, background-color var(--duration-micro) ease;
+}
+
+.matrix-cell-box:hover {
+    transform: scale(1.14) translateY(-1px);
+    z-index: 30;
+    box-shadow: 0 8px 20px rgba(196, 112, 63, 0.25);
+}
+
+.matrix-cell-box:active {
+    transform: scale(0.96);
+}
+
+/* Heatmap Wave Stagger Entrance Animation */
+@keyframes waveStaggerIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.85) translateY(4px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.matrix-cell-animated {
+    animation: waveStaggerIn 380ms var(--ease-standard) both;
+}
+
+/* Cell Palette Classes */
+.cell-100 {
+    background-color: var(--cell-100-bg);
+    border: 1px solid var(--cell-100-border);
+    color: var(--cell-100-text);
+}
+
+.cell-75 {
+    background-color: var(--cell-75-bg);
+    border: 1px solid var(--cell-75-border);
+    color: var(--cell-75-text);
+}
+
+.cell-50 {
+    background-color: var(--cell-50-bg);
+    border: 1px solid var(--cell-50-border);
+    color: var(--cell-50-text);
+}
+
+.cell-25 {
+    background-color: var(--cell-25-bg);
+    border: 1px solid var(--cell-25-border);
+    color: var(--cell-25-text);
+}
+
+.cell-0 {
+    background-color: var(--cell-0-bg);
+    border: 1px solid var(--cell-0-border);
+    color: var(--cell-0-text);
+}
+
+/* Matrix Cell Tooltip */
+.matrix-tooltip {
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(43, 36, 32, 0.94);
+    backdrop-filter: blur(12px);
+    color: #FAF6EF;
+    padding: 8px 12px;
+    border-radius: 12px;
+    font-size: 11px;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity var(--duration-standard) ease, transform var(--duration-standard) var(--ease-standard);
+    z-index: 100;
+    box-shadow: 0 12px 32px rgba(43, 36, 32, 0.25);
+    text-align: left;
+}
+
+.matrix-cell-box:hover .matrix-tooltip {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-4px);
+}
+
+/* ==========================================================================
+   CIRCULAR ROADMAP DAG CANVAS & DRAW-ON ANIMATION
+   ========================================================================== */
+.circular-roadmap-canvas {
+    position: relative;
+    width: 100%;
+    min-height: 720px;
+    background-color: transparent;
+    background-image: radial-gradient(rgba(43, 36, 32, 0.08) 1.5px, transparent 1.5px);
+    background-size: 24px 24px;
+    overflow-x: auto;
+    border-radius: 24px;
+}
+
+/* SVG Stroke Draw-On Animation for DAG Connection Lines */
+@keyframes svgStrokeDraw {
+    from {
+        stroke-dashoffset: 1000;
+    }
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+.svg-dag-path-draw {
+    stroke-dasharray: 1000;
+    animation: svgStrokeDraw 1.1s var(--ease-standard) forwards;
+}
+
+.react-flow-handle {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: var(--primary-accent);
+    border: 2.5px solid #FFFFFF;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 45;
+    cursor: crosshair;
+    opacity: 0.6;
+    transition: all var(--duration-standard) var(--ease-standard);
+    box-shadow: 0 2px 6px rgba(43, 36, 32, 0.2);
+}
+
+.circular-node-container:hover .react-flow-handle,
+.react-flow-handle:hover {
+    opacity: 1;
+    transform: translateY(-50%) scale(1.35);
+    box-shadow: 0 0 0 4px rgba(196, 112, 63, 0.4);
+}
+
+.react-flow-handle.left-handle { left: -8px; }
+.react-flow-handle.right-handle { right: -8px; }
+
+.circular-node-container {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    cursor: grab;
+    transition: box-shadow 0.3s ease;
+    z-index: 10;
+    user-select: none;
+}
+
+.circular-node-container:active { cursor: grabbing; }
+
+.circular-node-badge {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 18px;
+    box-shadow: 0 8px 24px rgba(196, 112, 63, 0.12), inset 0 1px 1px rgba(255, 255, 255, 0.85);
+    transition: all var(--duration-standard) var(--ease-standard);
+    position: relative;
+}
+
+.circular-node-container:hover .circular-node-badge {
+    box-shadow: 0 16px 40px rgba(196, 112, 63, 0.25);
+    transform: scale(1.05);
+}
+
+.circular-node-badge.mastered {
+    background-color: var(--surface);
+    border: 2.5px solid var(--primary-accent);
+    color: var(--primary-accent);
+}
+
+.circular-node-badge.active {
+    background-color: var(--surface-light);
+    border: 2.5px solid var(--primary-accent);
+    color: var(--primary-accent);
+    animation: waterPulse 2.5s infinite ease-in-out;
+}
+
+.circular-node-badge.in_progress {
+    background-color: var(--surface);
+    border: 2.5px solid var(--secondary-accent);
+    color: var(--secondary-accent);
+}
+
+.circular-node-badge.target {
+    background-color: rgba(255, 255, 255, 0.85);
+    border: 2.5px solid var(--surface-dark);
+    color: var(--ink-tertiary);
+}
+
+/* ==========================================================================
+   AI ASSISTANT LIVING LAYER STYLES (STRICTLY FOR AI SURFACES)
+   ========================================================================== */
+.ai-gradient-surface {
+    background: var(--ai-gradient);
+    color: #FFFFFF;
+}
+
+.ai-gradient-text {
+    background: var(--ai-gradient-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.ai-living-border {
+    position: relative;
+    border: 1.5px solid transparent;
+    background-clip: padding-box;
+}
+
+.ai-living-border::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    padding: 2px;
+    background: linear-gradient(135deg, #C4703F, #D4A574, #8B5A9C, #C4703F);
+    background-size: 300% 300%;
+    animation: aiBorderRotate 4s ease infinite;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+@keyframes aiBorderRotate {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* AI Highlight Action Glow (Signals Programmatic UI Mutation by Assistant) */
+@keyframes aiActionGlow {
+    0% {
+        box-shadow: 0 0 0 0 rgba(196, 112, 63, 0.7), 0 0 0 0 rgba(139, 90, 156, 0.5);
+        border-color: #C4703F;
+    }
+    40% {
+        box-shadow: 0 0 0 8px rgba(196, 112, 63, 0.35), 0 0 24px 6px rgba(139, 90, 156, 0.25);
+        border-color: #8B5A9C;
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(196, 112, 63, 0), 0 0 0 0 rgba(139, 90, 156, 0);
+    }
+}
+
+.ai-pulse-highlight {
+    animation: aiActionGlow 2.8s var(--ease-standard) both;
+    position: relative;
+    z-index: 35;
+}
+
+/* AI Thinking Indicator Soft Wave Pulse */
+@keyframes aiThinkingWave {
+    0%, 100% {
+        transform: scaleY(0.4);
+        opacity: 0.4;
+    }
+    50% {
+        transform: scaleY(1.1);
+        opacity: 1;
+    }
+}
+
+.ai-thinking-bar {
+    width: 3.5px;
+    height: 16px;
+    border-radius: 2px;
+    background: var(--ai-gradient);
+    display: inline-block;
+    animation: aiThinkingWave 1.1s ease-in-out infinite;
+}
+
+.ai-thinking-bar:nth-child(2) { animation-delay: 0.15s; }
+.ai-thinking-bar:nth-child(3) { animation-delay: 0.3s; }
+.ai-thinking-bar:nth-child(4) { animation-delay: 0.45s; }
+
+/* ==========================================================================
+   MAGNETIC HOVER UTILITIES
+   ========================================================================== */
+.magnetic-target {
+    transition: transform 180ms var(--ease-standard);
+    will-change: transform;
+}
+
+/* ==========================================================================
+   BUTTONS (PRIMARY & TACTILE SECONDARY)
+   ========================================================================== */
+.btn-caramel {
+    background-color: var(--primary-accent);
+    color: #FFFFFF;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 13px;
+    padding: 10px 20px;
+    border-radius: 9999px;
+    border: none;
+    cursor: pointer;
+    transition: transform var(--duration-standard) var(--ease-standard), box-shadow var(--duration-standard) ease, background-color var(--duration-standard) ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 16px rgba(196, 112, 63, 0.28);
+}
+
+.btn-caramel:hover {
+    background-color: var(--primary-accent-hover);
+    transform: translateY(-1.5px) scale(1.02);
+    box-shadow: 0 8px 24px rgba(196, 112, 63, 0.38);
+}
+
+.btn-caramel:active {
+    transform: scale(0.96);
+}
+
+.btn-ai-accent {
+    background: var(--ai-gradient);
+    color: #FFFFFF;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 13px;
+    padding: 10px 20px;
+    border-radius: 9999px;
+    border: none;
+    cursor: pointer;
+    transition: transform var(--duration-standard) var(--ease-standard), box-shadow var(--duration-standard) ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 20px rgba(196, 112, 63, 0.35);
+}
+
+.btn-ai-accent:hover {
+    transform: translateY(-1.5px) scale(1.02);
+    box-shadow: 0 8px 28px rgba(139, 90, 156, 0.4);
+}
+
+.btn-ai-accent:active {
+    transform: scale(0.96);
+}
+
+.btn-tactile-secondary {
+    background: rgba(255, 255, 255, 0.85);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 13px;
+    padding: 10px 20px;
+    border-radius: 9999px;
+    border: 1px solid rgba(220, 209, 192, 0.9);
+    cursor: pointer;
+    transition: transform var(--duration-standard) var(--ease-standard), border-color var(--duration-standard) ease, background-color var(--duration-standard) ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-tactile-secondary:hover {
+    background: #FFFFFF;
+    transform: translateY(-1px) scale(1.01);
+    border-color: var(--primary-accent);
+}
+
+.btn-tactile-secondary:active {
+    transform: scale(0.96);
+}
+
+/* ==========================================================================
+   SKELETON / SHIMMER LOADING STATES
+   ========================================================================== */
+@keyframes shimmerSkeleton {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+.shimmer-skeleton {
+    background: linear-gradient(90deg, rgba(240, 230, 216, 0.6) 25%, rgba(255, 255, 255, 0.8) 50%, rgba(240, 230, 216, 0.6) 75%);
+    background-size: 200% 100%;
+    animation: shimmerSkeleton 1.6s infinite ease-in-out;
+    border-radius: 8px;
+}
+
+/* ==========================================================================
+   KEYFRAME ANIMATIONS
+   ========================================================================== */
+@keyframes waterPulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(196, 112, 63, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 0 16px rgba(196, 112, 63, 0);
+    }
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.animate-fade-in-scale {
+    animation: fadeInScale var(--duration-page) var(--ease-standard) forwards;
+}
+
+/* Only outermost page container scrollbar is visible */
+html {
+    scrollbar-width: thin;
+    scrollbar-color: #DCD1C0 transparent;
+}
+html::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+}
+html::-webkit-scrollbar-track {
+    background: transparent;
+}
+html::-webkit-scrollbar-thumb {
+    background: #DCD1C0;
+    border-radius: 4px;
+}
+html::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-accent);
+}
+
+/* Visually hide scrollbars for all inner nested elements while keeping scroll functional */
+body * {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+}
+body *::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+
+
+/* Hide native browser clock picker icons */
+input[type="time"]::-webkit-calendar-picker-indicator {
+    display: none !important;
+    -webkit-appearance: none !important;
+    opacity: 0 !important;
+}
+input[type="time"]::-webkit-inner-spin-button,
+input[type="time"]::-webkit-clear-button {
+    display: none !important;
+    -webkit-appearance: none !important;
+}
+
+/* ==========================================================================
+   AI ASSISTANT DRAWER & APPLE SIRI ORB LIQUID LIGHT THEME
+   Warm Coral (#FF8A5B), Amber (#FFB05B), Soft Cream (#FFE4C4), Deep Caramel (#D85A2A)
+   ========================================================================== */
+.ai-drawer-cream {
+    background-color: #FFF8F0;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Drifting Lava-Lamp Soft Blob */
+@keyframes blobDrift1 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(45px, -35px) scale(1.2); }
+}
+
+@keyframes blobDrift2 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-35px, 30px) scale(1.15); }
+}
+
+.ai-blob-1 {
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 138, 91, 0.08) 0%, rgba(255, 176, 91, 0.04) 55%, transparent 75%);
+    filter: blur(45px);
+    animation: blobDrift1 14s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.ai-blob-2 {
+    position: absolute;
+    bottom: -80px;
+    left: -60px;
+    width: 360px;
+    height: 360px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 176, 91, 0.09) 0%, rgba(255, 228, 196, 0.05) 60%, transparent 75%);
+    filter: blur(50px);
+    animation: blobDrift2 16s ease-in-out infinite;
+    pointer-events: none;
+}
+
+/* ==========================================================================
+   SIRI ORB — FLUID LIQUID LIGHT ENGINE (WARM CARAMEL & CORAL PALETTE)
+   Ambient, intelligent, alive — morphing gradients, 3D refraction & glow
+   ========================================================================== */
+
+/* Outer Orb Wrapper */
+.siri-orb-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    user-select: none;
+    flex-shrink: 0;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+}
+
+/* Ambient Outer Breathing Glow */
+.siri-orb-glow {
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 138, 91, 0.45) 0%, rgba(255, 176, 91, 0.22) 50%, transparent 75%);
+    filter: blur(12px);
+    pointer-events: none;
+    transition: opacity 0.5s ease, transform 0.5s ease, filter 0.5s ease;
+}
+
+/* Idle Breathing Glow */
+@keyframes siriGlowBreathe {
+    0%, 100% {
+        transform: scale(0.95);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.85;
+    }
+}
+
+.siri-glow-idle {
+    animation: siriGlowBreathe 3.2s ease-in-out infinite;
+}
+
+/* Listening Waveform Pulse Glow */
+@keyframes siriGlowListening {
+    0%, 100% {
+        transform: scale(1.05);
+        opacity: 0.7;
+        filter: blur(10px);
+    }
+    50% {
+        transform: scale(1.28);
+        opacity: 0.98;
+        filter: blur(18px);
+    }
+}
+
+.siri-glow-listening {
+    background: radial-gradient(circle, rgba(255, 138, 91, 0.65) 0%, rgba(255, 190, 91, 0.38) 55%, transparent 75%);
+    animation: siriGlowListening 1.8s ease-in-out infinite;
+}
+
+/* Thinking Tightened Concentrating Glow */
+@keyframes siriGlowThinking {
+    0%, 100% {
+        transform: scale(0.98);
+        opacity: 0.75;
+        filter: blur(8px);
+    }
+    50% {
+        transform: scale(1.15);
+        opacity: 0.98;
+        filter: blur(14px);
+    }
+}
+
+.siri-glow-thinking {
+    background: radial-gradient(circle, rgba(255, 176, 91, 0.7) 0%, rgba(255, 216, 138, 0.45) 60%, transparent 75%);
+    animation: siriGlowThinking 1.1s ease-in-out infinite;
+}
+
+/* Action Confirmed Flash Glow */
+@keyframes siriGlowAction {
+    0% {
+        transform: scale(0.9);
+        opacity: 0.6;
+    }
+    40% {
+        transform: scale(1.5);
+        opacity: 1;
+        filter: blur(22px);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+}
+
+.siri-glow-action {
+    animation: siriGlowAction 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Main Spherical Core Container */
+.siri-orb-sphere {
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
+    background: radial-gradient(circle at 40% 38%, #FFE4C4 0%, #FFB05B 45%, #FF8A5B 80%, #D85A2A 100%);
+    box-shadow: 
+        inset 0 2px 4px rgba(255, 255, 255, 0.8),
+        inset 0 -4px 10px rgba(180, 60, 20, 0.45),
+        0 8px 24px rgba(216, 90, 42, 0.32);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
+    will-change: transform, filter;
+}
+
+/* Morphing Liquid Light Blobs (Inside the Sphere) */
+.siri-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(7px) saturate(150%);
+    mix-blend-mode: screen;
+    pointer-events: none;
+    will-change: transform, border-radius;
+}
+
+/* Blob 1: Coral / Warm Orange Flow */
+.siri-blob-1 {
+    top: -20%;
+    left: -20%;
+    width: 140%;
+    height: 140%;
+    background: radial-gradient(circle at 35% 35%, #FF8A5B 0%, #FF6A3B 55%, transparent 75%);
+}
+
+/* Blob 2: Luminous Amber / Soft Cream Flow */
+.siri-blob-2 {
+    bottom: -20%;
+    right: -20%;
+    width: 135%;
+    height: 135%;
+    background: radial-gradient(circle at 65% 65%, #FFE4C4 0%, #FFB05B 50%, transparent 75%);
+}
+
+/* Blob 3: Central Golden Core Pulse */
+.siri-blob-3 {
+    top: 15%;
+    left: 15%;
+    width: 70%;
+    height: 70%;
+    background: radial-gradient(circle, #FFF5E6 0%, #FFD88A 45%, transparent 70%);
+    opacity: 0.85;
+}
+
+/* Swirl Keyframes */
+@keyframes siriBlobSwirl1 {
+    0% {
+        transform: translate(-15%, -15%) rotate(0deg) scale(1.05);
+        border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+    }
+    50% {
+        transform: translate(12%, 10%) rotate(180deg) scale(1.22);
+        border-radius: 58% 42% 35% 65% / 55% 58% 42% 45%;
+    }
+    100% {
+        transform: translate(-15%, -15%) rotate(360deg) scale(1.05);
+        border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+    }
+}
+
+@keyframes siriBlobSwirl2 {
+    0% {
+        transform: translate(15%, 10%) rotate(0deg) scale(1.15);
+        border-radius: 65% 35% 50% 50% / 35% 60% 40% 65%;
+    }
+    50% {
+        transform: translate(-12%, -15%) rotate(-180deg) scale(0.95);
+        border-radius: 35% 65% 60% 40% / 60% 35% 65% 40%;
+    }
+    100% {
+        transform: translate(15%, 10%) rotate(-360deg) scale(1.15);
+        border-radius: 65% 35% 50% 50% / 35% 60% 40% 65%;
+    }
+}
+
+@keyframes siriBlobPulseCore {
+    0%, 100% {
+        transform: scale(0.9) translate(-4%, -4%);
+        opacity: 0.75;
+    }
+    50% {
+        transform: scale(1.18) translate(4%, 4%);
+        opacity: 0.98;
+    }
+}
+
+/* State-based Swirl Speeds */
+/* IDLE: 8-10s slow, gentle loop */
+.siri-state-idle .siri-blob-1 {
+    animation: siriBlobSwirl1 9s ease-in-out infinite;
+}
+.siri-state-idle .siri-blob-2 {
+    animation: siriBlobSwirl2 10.5s ease-in-out infinite;
+}
+.siri-state-idle .siri-blob-3 {
+    animation: siriBlobPulseCore 4.5s ease-in-out infinite;
+}
+.siri-state-idle {
+    animation: siriIdleBreathe 3.2s ease-in-out infinite;
+}
+
+@keyframes siriIdleBreathe {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.025);
+    }
+}
+
+/* LISTENING: 3-4s faster loop, scaled to 1.1 */
+.siri-state-listening .siri-blob-1 {
+    animation: siriBlobSwirl1 3.4s ease-in-out infinite;
+}
+.siri-state-listening .siri-blob-2 {
+    animation: siriBlobSwirl2 3.8s ease-in-out infinite;
+}
+.siri-state-listening .siri-blob-3 {
+    animation: siriBlobPulseCore 2s ease-in-out infinite;
+}
+.siri-state-listening {
+    transform: scale(1.08);
+}
+
+/* THINKING: 1.5-2s fast concentrating loop, cooler amber shift */
+.siri-state-thinking .siri-blob-1 {
+    animation: siriBlobSwirl1 1.6s ease-in-out infinite;
+}
+.siri-state-thinking .siri-blob-2 {
+    animation: siriBlobSwirl2 1.8s ease-in-out infinite;
+}
+.siri-state-thinking .siri-blob-3 {
+    animation: siriBlobPulseCore 1.1s ease-in-out infinite;
+}
+.siri-state-thinking {
+    filter: hue-rotate(10deg) brightness(1.08);
+    transform: scale(0.96);
+}
+
+/* SPEAKING: rhythmic waveform bumps */
+.siri-state-speaking .siri-blob-1 {
+    animation: siriBlobSwirl1 2.8s ease-in-out infinite;
+}
+.siri-state-speaking .siri-blob-2 {
+    animation: siriBlobSwirl2 3.2s ease-in-out infinite;
+}
+.siri-state-speaking {
+    animation: siriSpeakingWave 0.75s ease-in-out infinite;
+}
+
+@keyframes siriSpeakingWave {
+    0%, 100% {
+        transform: scale(1);
+        filter: brightness(1);
+    }
+    30% {
+        transform: scale(1.06);
+        filter: brightness(1.15);
+    }
+    65% {
+        transform: scale(0.98);
+        filter: brightness(0.98);
+    }
+    85% {
+        transform: scale(1.04);
+        filter: brightness(1.1);
+    }
+}
+
+/* ACTION CONFIRMED: quick pulse flash */
+.siri-state-action {
+    animation: siriActionPop 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes siriActionPop {
+    0% {
+        transform: scale(1);
+        filter: brightness(1);
+    }
+    35% {
+        transform: scale(1.28);
+        filter: brightness(1.4) drop-shadow(0 0 24px #FFD88A);
+    }
+    100% {
+        transform: scale(1);
+        filter: brightness(1);
+    }
+}
+
+/* 3D Glassy Highlights */
+.siri-glass-highlight {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    pointer-events: none;
+    background: radial-gradient(circle at 28% 25%, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.32) 28%, rgba(255, 255, 255, 0) 55%);
+    z-index: 2;
+}
+
+.siri-glass-rim {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    pointer-events: none;
+    box-shadow: inset 0 1px 1.5px rgba(255, 255, 255, 0.9), inset 0 -2px 5px rgba(216, 90, 42, 0.4);
+    z-index: 3;
+}
+
+/* Orbiting Particles / Moons (Thinking State) */
+.siri-orbit-container {
+    position: absolute;
+    inset: -12px;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.siri-moon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    transform-origin: 0 0;
+}
+
+.siri-moon-1 {
+    width: 4px;
+    height: 4px;
+    background: #FFF8F0;
+    box-shadow: 0 0 8px #FFD88A;
+    animation: siriOrbit1 1.8s linear infinite;
+}
+
+.siri-moon-2 {
+    width: 3px;
+    height: 3px;
+    background: #FFD88A;
+    box-shadow: 0 0 6px #FF8A5B;
+    animation: siriOrbit2 2.3s linear infinite;
+}
+
+.siri-moon-3 {
+    width: 3.5px;
+    height: 3.5px;
+    background: #FF8A5B;
+    box-shadow: 0 0 6px #FFB05B;
+    animation: siriOrbit3 2s linear infinite;
+}
+
+@keyframes siriOrbit1 {
+    0% {
+        transform: rotate(0deg) translate(32px) rotate(0deg);
+        opacity: 0.9;
+    }
+    50% {
+        opacity: 0.35;
+    }
+    100% {
+        transform: rotate(360deg) translate(32px) rotate(-360deg);
+        opacity: 0.9;
+    }
+}
+
+@keyframes siriOrbit2 {
+    0% {
+        transform: rotate(120deg) translate(35px) rotate(-120deg);
+        opacity: 0.85;
+    }
+    50% {
+        opacity: 0.25;
+    }
+    100% {
+        transform: rotate(480deg) translate(35px) rotate(-480deg);
+        opacity: 0.85;
+    }
+}
+
+@keyframes siriOrbit3 {
+    0% {
+        transform: rotate(240deg) translate(29px) rotate(-240deg);
+        opacity: 0.8;
+    }
+    50% {
+        opacity: 0.4;
+    }
+    100% {
+        transform: rotate(600deg) translate(29px) rotate(-600deg);
+        opacity: 0.8;
+    }
+}
+
+/* Activation Ripple Ring */
+.siri-activation-ripple {
+    position: absolute;
+    inset: -14px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 176, 91, 0.8);
+    pointer-events: none;
+    animation: siriRippleExpand 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes siriRippleExpand {
+    0% {
+        transform: scale(0.6);
+        opacity: 0.95;
+    }
+    100% {
+        transform: scale(2.2);
+        opacity: 0;
+    }
+}
+
+/* Notification Badge on Orb Edge */
+.siri-notification-badge {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #FFD88A;
+    border: 2px solid #FFFFFF;
+    box-shadow: 0 0 10px #FF8A5B;
+    animation: siriBadgePulse 2.4s ease-in-out infinite;
+    z-index: 12;
+}
+
+@keyframes siriBadgePulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 6px #FF8A5B;
+    }
+    50% {
+        transform: scale(1.25);
+        box-shadow: 0 0 14px #FF8A5B, 0 0 20px #FFD88A;
+    }
+}
+
+/* Thinking Soundwave Shimmer Bars */
+.siri-thinking-bar {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    height: 14px;
+    padding: 0 2px;
+}
+
+.siri-soundwave-bar {
+    width: 3px;
+    height: 100%;
+    border-radius: 2px;
+    background: linear-gradient(to top, #FF8A5B, #FFD88A);
+    animation: siriSoundwave 0.8s ease-in-out infinite alternate;
+}
+
+.siri-soundwave-bar:nth-child(1) { animation-delay: 0.05s; height: 6px; }
+.siri-soundwave-bar:nth-child(2) { animation-delay: 0.25s; height: 12px; }
+.siri-soundwave-bar:nth-child(3) { animation-delay: 0.45s; height: 16px; }
+.siri-soundwave-bar:nth-child(4) { animation-delay: 0.15s; height: 10px; }
+.siri-soundwave-bar:nth-child(5) { animation-delay: 0.35s; height: 6px; }
+
+@keyframes siriSoundwave {
+    0% { transform: scaleY(0.35); opacity: 0.6; }
+    100% { transform: scaleY(1.15); opacity: 1; }
+}
+
+/* Comic Speech Bubbles */
+.speech-bubble-ai {
+    background-color: #FF8A5B;
+    color: #FFFFFF;
+    border-radius: 20px 20px 20px 4px;
+    position: relative;
+    box-shadow: 0 4px 14px rgba(255, 138, 91, 0.28);
+}
+
+.speech-bubble-user {
+    background-color: #2B2420;
+    color: #FFFFFF;
+    border-radius: 20px 20px 4px 20px;
+    position: relative;
+    box-shadow: 0 4px 14px rgba(43, 36, 32, 0.18);
+}
+
+/* Message Pop-in Spring Bounce Animation */
+@keyframes messageSpringPop {
+    0% {
+        opacity: 0;
+        transform: scale(0.9) translateY(10px);
+    }
+    70% {
+        opacity: 1;
+        transform: scale(1.025) translateY(-2px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.message-pop-in {
+    animation: messageSpringPop 320ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Comic Particle Burst Confirmation */
+@keyframes particleBurstDot1 {
+    0% { transform: translate(0, 0) scale(0); opacity: 1; }
+    100% { transform: translate(-14px, -12px) scale(1); opacity: 0; }
+}
+
+@keyframes particleBurstDot2 {
+    0% { transform: translate(0, 0) scale(0); opacity: 1; }
+    100% { transform: translate(14px, -10px) scale(1); opacity: 0; }
+}
+
+@keyframes particleBurstDot3 {
+    0% { transform: translate(0, 0) scale(0); opacity: 1; }
+    100% { transform: translate(0, -16px) scale(1); opacity: 0; }
+}
+
+.particle-dot-1 { animation: particleBurstDot1 0.6s ease-out forwards; }
+.particle-dot-2 { animation: particleBurstDot2 0.6s ease-out forwards; }
+.particle-dot-3 { animation: particleBurstDot3 0.6s ease-out forwards; }
+
+/* Bouncing Typing Dots */
+@keyframes typingDotBounce {
+    0%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-6px); }
+}
+
+.typing-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #FF8A5B;
+    display: inline-block;
+    animation: typingDotBounce 1.2s infinite ease-in-out;
+}
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+/* Consistency Heatmap Grid & Safe Tooltip */
+.consistency-cell {
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.16s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.16s ease;
+}
+.consistency-cell:hover {
+    transform: scale(1.18);
+    z-index: 35;
+    box-shadow: 0 4px 12px rgba(43, 36, 32, 0.18);
+}
+.consistency-tooltip {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(43, 36, 32, 0.95);
+    backdrop-filter: blur(12px);
+    color: #FAF6EF;
+    padding: 6px 10px;
+    border-radius: 10px;
+    font-size: 11px;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s ease, transform 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 100;
+    box-shadow: 0 8px 24px rgba(43, 36, 32, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+.consistency-cell:hover .consistency-tooltip {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-2px);
+}
+.consistency-cell.align-left .consistency-tooltip {
+    left: 0;
+    transform: translateX(0);
+}
+.consistency-cell.align-left:hover .consistency-tooltip {
+    transform: translateX(0) translateY(-2px);
+}
+.consistency-cell.align-right .consistency-tooltip {
+    left: auto;
+    right: 0;
+    transform: translateX(0);
+}
+.consistency-cell.align-right:hover .consistency-tooltip {
+    transform: translateX(0) translateY(-2px);
+}
+

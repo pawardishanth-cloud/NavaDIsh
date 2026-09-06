@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NavaDish v3 — Academic & Career Schedule Engine</title>
+    
+    <!-- Visual Debug Error Capturer -->
+    <script>
+    window.onerror = function(msg, url, lineNo, columnNo, error) {
+        console.error("GLOBAL ERROR CAPTURED:", msg, url, lineNo, columnNo, error);
+        var box = document.getElementById('debug-error-overlay');
+        if (!box) {
+            box = document.createElement('div');
+            box.id = 'debug-error-overlay';
+            box.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:#2B2420;color:#B5484A;padding:32px;font-family:monospace;z-index:9999999;overflow:auto;font-size:14px;line-height:1.6;';
+            document.body ? document.body.appendChild(box) : document.addEventListener('DOMContentLoaded', function() { document.body.appendChild(box); });
+        }
+        box.innerHTML += '<h2 style="color:#FAF6EF;margin-bottom:12px;font-size:20px;">⚠️ Runtime Exception Captured</h2>' +
+            '<p style="color:#C4703F;font-size:16px;font-weight:bold;margin-bottom:8px;">' + msg + '</p>' +
+            '<p style="color:#F0E6D8;margin-bottom:12px;">Source: ' + (url || 'inline/app.js') + ' (Line ' + lineNo + ', Column ' + columnNo + ')</p>' +
+            '<pre style="color:#FAF6EF;background:rgba(0,0,0,0.5);padding:16px;border-radius:8px;white-space:pre-wrap;word-break:break-all;">' + (error && error.stack ? error.stack : msg) + '</pre><hr style="border-color:#8B5A3C;margin:20px 0;"/>';
+        return false;
+    };
+    window.addEventListener('unhandledrejection', function(event) {
+        var reason = event.reason;
+        var msg = reason ? (reason.message || String(reason)) : 'Unhandled Promise Rejection';
+        window.onerror('Unhandled Rejection: ' + msg, '', 0, 0, reason);
+    });
+    </script>
+    
+    <!-- Google Fonts: Playfair Display (Serif), Inter (Sans-serif), IBM Plex Mono (Mono) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        base: '#FAF6EF',
+                        surface: {
+                            DEFAULT: '#F0E6D8',
+                            light: '#F7F1E8',
+                            dark: '#E4D5C3'
+                        },
+                        ink: {
+                            DEFAULT: '#2B2420',
+                            muted: '#5C4638',
+                            tertiary: '#8C7265'
+                        },
+                        accent: {
+                            primary: '#C4703F',
+                            secondary: '#8B5A3C',
+                            hover: '#A9582A'
+                        },
+                        mastery: {
+                            DEFAULT: '#7A8B5C',
+                            light: '#E8EFE0',
+                            border: '#BFD1A2'
+                        },
+                        deficit: {
+                            DEFAULT: '#B5484A',
+                            light: '#FBEBEB',
+                            border: '#E8A3A5'
+                        },
+                        ai: {
+                            start: '#C4703F',
+                            mid: '#D4A574',
+                            end: '#8B5A9C'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'Georgia', 'serif'],
+                        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                        mono: ['"IBM Plex Mono"', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom CSS tokens and Apple HIG / Linear-Cron glassmorphism styles -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Lenis Smooth Scroll CDN -->
+    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+    <script>
+        // Initialize Lenis smooth scroll globally
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                if (typeof Lenis !== 'undefined') {
+                    const lenis = new Lenis({
+                        duration: 1.2,
+                        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                        direction: 'vertical',
+                        gestureDirection: 'vertical',
+                        smooth: true,
+                        smoothTouch: false
+                    });
+                    window.lenis = lenis;
+                    function raf(time) {
+                        lenis.raf(time);
+                        requestAnimationFrame(raf);
+                    }
+                    requestAnimationFrame(raf);
+                }
+            } catch (e) {
+                console.warn("Lenis init fallback:", e);
+            }
+        });
+    </script>
+
+    <!-- React 18 & Babel Standalone -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Framer Motion UMD CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/framer-motion@4.1.17/dist/framer-motion.js"></script>
+</head>
+<body class="bg-[#FAF6EF] text-[#2B2420] font-sans antialiased min-h-screen selection:bg-[#C4703F]/20 selection:text-[#2B2420]">
+    <!-- React Root Mount -->
+    <div id="root"></div>
+
+    <!-- Application Script -->
+    <script type="text/babel" src="app.js"></script>
+</body>
+</html>
